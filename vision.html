@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISION IOT PROJECT CASE STUDY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="vision.css?v=11">
+</head>
+<body>
+    <!-- Fixed background canvas for the video frames -->
+    <canvas id="vision-canvas"></canvas>
+    
+    <!-- Scanlines effect -->
+    <div class="scanlines"></div>
+
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> SYSTEM REBOOT</a>
+        <div class="nav-title">VISION_SYS_LOG</div>
+    </nav>
+
+    <!-- Scrollable content overlaid on top -->
+    <main class="content-scroll">
+        <!-- Spacer to allow scrolling through first frames before text appears -->
+        <section class="spacer hero-spacer">
+            <p class="cyber-label">&gt; CAPSTONE_PROJECT</p>
+            <h1 class="glitch" data-text="PROJECT VISION">PROJECT VISION</h1>
+            <p class="subtitle">Visually Impaired Smart Integrated Obstacle Navigator</p>
+            <div class="scroll-indicator">
+                SCROLL TO DECRYPT <br>
+                <i class="fa-solid fa-angles-down blink" style="margin-top: 10px;"></i>
+            </div>
+        </section>
+
+        <!-- Component 1: The Challenge (Alert Style) -->
+        <section class="data-block right">
+            <div class="alert-card hidden">
+                <div class="alert-header">
+                    <i class="fa-solid fa-triangle-exclamation pulse-red"></i>
+                    <h2>CRITICAL CHALLENGE</h2>
+                </div>
+                <div class="alert-content">
+                    <div class="threat-item">
+                        <span class="threat-icon"><i class="fa-solid fa-ban"></i></span>
+                        <div class="threat-text">
+                            <strong>UNDETECTED HAZARDS</strong>
+                            <span>Traditional canes completely fail to detect head-level obstacles and ground water.</span>
+                        </div>
+                    </div>
+                    <div class="threat-item">
+                        <span class="threat-icon"><i class="fa-solid fa-satellite-dish"></i></span>
+                        <div class="threat-text">
+                            <strong>NO EMERGENCY LINK</strong>
+                            <span>Lack of remote tracking or SOS capabilities for immediate caregiver intervention.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="radar-scan"></div>
+            </div>
+        </section>
+
+        <!-- Component 2: The Architecture (Node Connection) -->
+        <section class="data-block left">
+            <div class="architecture-card hidden">
+                <p class="cyber-label" style="text-align: center;">&gt; SYSTEM_ARCHITECTURE</p>
+                <div class="node-container">
+                    <div class="node master-node">
+                        <div class="node-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <h3>SMART STICK</h3>
+                        <span class="node-role">ESP32 (MASTER)</span>
+                        <ul class="node-stats">
+                            <li><i class="fa-solid fa-wifi"></i> BLYNK IoT</li>
+                            <li><i class="fa-solid fa-location-dot"></i> NEO-6M GPS</li>
+                            <li><i class="fa-solid fa-droplet"></i> WATER SENSOR</li>
+                        </ul>
+                    </div>
+
+                    <div class="data-link">
+                        <div class="link-line"></div>
+                        <div class="link-packet"></div>
+                        <span class="link-label"><i class="fa-brands fa-bluetooth"></i> MESH</span>
+                    </div>
+
+                    <div class="node slave-node">
+                        <div class="node-icon"><i class="fa-brands fa-usb"></i></div>
+                        <h3>SMART HAT</h3>
+                        <span class="node-role">NANO (SLAVE)</span>
+                        <ul class="node-stats">
+                            <li><i class="fa-solid fa-radar"></i> HC-SR04</li>
+                            <li><i class="fa-solid fa-rotate"></i> SG90 SERVO</li>
+                            <li><i class="fa-solid fa-volume-high"></i> DFPLAYER</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component 3: Requirements Grid -->
+        <section class="data-block center">
+            <div class="glass-panel hidden">
+                <div class="panel-header">
+                    <h2>SYSTEM REQUIREMENTS</h2>
+                    <div class="status-badge">OPTIMIZED</div>
+                </div>
+                
+                <div class="req-grid">
+                    <div class="req-card hidden-stagger">
+                        <div class="req-icon"><i class="fa-solid fa-arrows-spin"></i></div>
+                        <h4>180° SCANNING</h4>
+                        <div class="progress-bar"><div class="fill" style="width: 100%;"></div></div>
+                        <span>Servo-driven Arc</span>
+                    </div>
+                    <div class="req-card hidden-stagger" style="transition-delay: 0.1s;">
+                        <div class="req-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h4>LOW LATENCY</h4>
+                        <div class="progress-bar"><div class="fill" style="width: 95%;"></div></div>
+                        <span>< 50ms Response</span>
+                    </div>
+                    <div class="req-card hidden-stagger" style="transition-delay: 0.2s;">
+                        <div class="req-icon"><i class="fa-solid fa-satellite"></i></div>
+                        <h4>LIVE TRACKING</h4>
+                        <div class="progress-bar"><div class="fill" style="width: 90%;"></div></div>
+                        <span>Continuous Sync</span>
+                    </div>
+                    <div class="req-card hidden-stagger" style="transition-delay: 0.3s;">
+                        <div class="req-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h4>MULTI-SENSORY</h4>
+                        <div class="progress-bar"><div class="fill" style="width: 100%;"></div></div>
+                        <span>Voice + Buzzer</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component 4: Future Scope -->
+        <section class="data-block right">
+            <div class="future-card hidden">
+                <div class="future-glow"></div>
+                <h2><i class="fa-solid fa-rocket"></i> V2.0 UPGRADES</h2>
+                <div class="future-list">
+                    <div class="future-item">
+                        <div class="f-dot"></div>
+                        <div class="f-text">
+                            <h4>ESP32-CAM AI VISION</h4>
+                            <p>TinyML object recognition ("Stairs Ahead").</p>
+                        </div>
+                    </div>
+                    <div class="future-item">
+                        <div class="f-dot"></div>
+                        <div class="f-text">
+                            <h4>HIGH-PRECISION RTK</h4>
+                            <p>Centimeter-level navigation fidelity.</p>
+                        </div>
+                    </div>
+                    <div class="future-item">
+                        <div class="f-dot"></div>
+                        <div class="f-text">
+                            <h4>WEARABLE SOLAR</h4>
+                            <p>Integrated flexible panels for absolute autonomy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component 5: Team Members -->
+        <section class="data-block center">
+            <div class="team-card hidden-stagger">
+                <p class="cyber-label" style="text-align: center;">&gt; DEVELOPMENT_TEAM</p>
+                <div class="team-content">
+                    <div class="team-image-wrapper">
+                        <img src="team.png" alt="Vision Development Team" class="team-image">
+                        <div class="scanline-overlay"></div>
+                    </div>
+                    <div class="team-names">
+                        <h3><i class="fa-solid fa-users"></i> PROJECT MEMBERS</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-user-astronaut"></i> Omkumar Rajendra Mahajan</li>
+                            <li><i class="fa-solid fa-user-astronaut"></i> Anushka Santosh Navgale</li>
+                            <li><i class="fa-solid fa-user-astronaut"></i> Gargi Vijay Patil</li>
+                            <li><i class="fa-solid fa-user-astronaut"></i> Jayesh Gopal Jagtap</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="spacer footer-spacer hidden">
+            <h2 class="glitch" data-text="END OF LOG" style="color: #fff; font-size: 3rem; font-weight: 900; margin-bottom: 2rem;">END OF LOG</h2>
+            <a href="index.html" class="cyber-btn">RETURN TO SYSTEM</a>
+        </section>
+    </main>
+
+    <script src="vision.js?v=6"></script>
+</body>
+</html>

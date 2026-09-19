@@ -1,0 +1,489 @@
+/* GAMING JOURNEY VARIABLES */
+:root {
+    --cyber-gold: #f5c518;
+    --cyber-dark: rgba(10, 10, 15, 0.85);
+    --cyber-glow: 0 0 15px rgba(245, 197, 24, 0.5);
+    --text-main: #e0e0e0;
+    --text-dim: #888888;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    font-family: 'Share Tech Mono', monospace; /* Gaming/Console font */
+    color: var(--text-main);
+    overflow: hidden; /* NO SCROLLING */
+    user-select: none;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Background Canvases */
+.canvas-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 0;
+}
+canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    object-fit: contain;
+}
+#webgl-canvas {
+    pointer-events: none;
+    z-index: 1; /* Above the 2D frames, below text */
+}
+
+#animation-canvas {
+    z-index: 0;
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.pos-left { transform: translateX(-20vw); }
+.pos-center { transform: translateX(0); }
+.pos-right { transform: translateX(20vw); }
+
+/* Scanlines overlay for CRT/HUD effect */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.1) 50%,
+        rgba(0,0,0,0.1)
+    );
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* HUD OVERLAY (The UI) */
+.hud-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 4rem;
+    pointer-events: none; /* Let clicks pass through empty space */
+}
+
+/* HUD Top */
+.hud-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--cyber-gold);
+    padding-bottom: 1rem;
+    pointer-events: auto;
+}
+.hud-logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cyber-gold);
+    letter-spacing: 2px;
+}
+.hud-level {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+}
+.hud-level span { color: var(--cyber-gold); font-weight: bold; }
+.blink { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Levels Container */
+.levels-container {
+    flex: 1;
+    position: relative;
+    width: 100%;
+}
+
+.level-screen {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(50px);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+.level-screen.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Cyber Cards (Content Containers) */
+.hud-card {
+    background: var(--cyber-dark);
+    border: 1px solid var(--cyber-gold);
+    padding: 3rem;
+    max-width: 600px;
+    box-shadow: var(--cyber-glow);
+    /* Sci-fi angular cut corner */
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+    position: relative;
+}
+/* A small decorative square in top right of card */
+.hud-card::after {
+    content: '';
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 10px; height: 10px;
+    background: var(--cyber-gold);
+}
+
+.hud-card.right-align { margin-left: auto; }
+.hud-card.center-align { margin: 0 auto; text-align: center; }
+.hud-card.full-width { max-width: 800px; margin: 0 auto; }
+
+/* Typography */
+.cyber-label {
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.cyber-subtitle {
+    color: var(--cyber-gold);
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+.cyber-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Glitch Text Effect */
+.glitch {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #fff;
+    position: relative;
+    margin-bottom: 1rem;
+}
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0.8;
+}
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 red;
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 blue;
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+@keyframes glitch-anim {
+    0% { clip-path: inset(20% 0 80% 0); }
+    20% { clip-path: inset(60% 0 10% 0); }
+    40% { clip-path: inset(40% 0 50% 0); }
+    60% { clip-path: inset(80% 0 5% 0); }
+    80% { clip-path: inset(10% 0 70% 0); }
+    100% { clip-path: inset(30% 0 20% 0); }
+}
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(10% 0 60% 0); }
+    20% { clip-path: inset(80% 0 5% 0); }
+    40% { clip-path: inset(30% 0 20% 0); }
+    60% { clip-path: inset(70% 0 10% 0); }
+    80% { clip-path: inset(50% 0 30% 0); }
+    100% { clip-path: inset(5% 0 80% 0); }
+}
+
+/* Buttons */
+.cyber-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    color: var(--cyber-gold);
+    border: 1px solid var(--cyber-gold);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+.cyber-btn:hover {
+    background: var(--cyber-gold);
+    color: #000;
+    box-shadow: var(--cyber-glow);
+}
+.cyber-btn.large { font-size: 1.2rem; padding: 1rem 3rem; }
+
+.hud-socials { margin-top: 2rem; display: flex; gap: 1rem; }
+.hud-socials a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+.hud-socials a:hover { color: var(--cyber-gold); }
+
+/* Specific Inner Layouts */
+.cyber-stats { display: flex; gap: 2rem; border-top: 1px solid #333; padding-top: 2rem; }
+.c-stat span { display: block; font-size: 2rem; font-family: 'Outfit'; font-weight: 700; color: var(--cyber-gold); }
+
+.cyber-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.cyber-grid-item { border: 1px dashed #444; padding: 1.5rem; transition: border-color 0.3s; }
+.cyber-grid-item:hover { border-color: var(--cyber-gold); }
+.cyber-grid-item i { font-size: 2rem; color: var(--cyber-gold); margin-bottom: 1rem; }
+.cyber-grid-item h4 { margin-bottom: 0.5rem; }
+
+.cyber-list { display: flex; flex-direction: column; gap: 1rem; }
+.cyber-list-item { display: flex; align-items: center; gap: 1.5rem; background: rgba(255,255,255,0.02); padding: 1rem; border-left: 3px solid var(--cyber-gold); }
+.c-icon { font-size: 1.5rem; color: var(--cyber-gold); }
+.cyber-list-item span { font-size: 0.8rem; color: #0f0; } /* Status green */
+
+/* HUD Bottom (Controls) */
+.hud-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--cyber-gold);
+    padding-top: 1.5rem;
+    pointer-events: auto;
+}
+.hud-status { color: var(--text-dim); font-size: 0.9rem; }
+
+.hud-btn {
+    background: rgba(245, 197, 24, 0.1);
+    border: 1px solid var(--cyber-gold);
+    color: var(--cyber-gold);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(245, 197, 24, 0.15);
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+.hud-btn:hover:not(:disabled) { 
+    background: var(--cyber-gold);
+    color: #000;
+    text-shadow: none;
+    box-shadow: var(--cyber-glow);
+    transform: scale(1.03);
+}
+.hud-btn:disabled { 
+    background: transparent;
+    color: #444; 
+    border-color: #444;
+    cursor: not-allowed; 
+    box-shadow: none;
+}
+
+/* Dynamic Transition Effect */
+.transition-flash {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: #fff;
+    z-index: 9999;
+    pointer-events: none;
+    animation: flashAnim 0.4s ease-out forwards;
+}
+@keyframes flashAnim {
+    0% { opacity: 0.7; }
+    100% { opacity: 0; }
+}
+
+/* Certifications Section */
+.horizontal-scroll-container {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scrollbar-width: none; /* Hide scrollbar for a cleaner look */
+}
+.horizontal-scroll-container::-webkit-scrollbar { display: none; }
+
+.cert-card {
+    min-width: 300px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--cyber-gold);
+    border-radius: 10px;
+    overflow: hidden;
+    /* Dynamic Entrance */
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.level-screen.active .cert-card {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Staggered entrance for the cards */
+.level-screen.active .cert-card:nth-child(1) { transition-delay: 0.2s; }
+.level-screen.active .cert-card:nth-child(2) { transition-delay: 0.4s; }
+
+.cert-card:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(245, 197, 24, 0.3);
+    z-index: 2;
+}
+
+.cert-image {
+    height: 200px;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #333;
+}
+
+.cert-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.cert-card:hover .cert-overlay {
+    opacity: 1;
+}
+
+.cyber-btn.small {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+}
+
+.cert-info {
+    padding: 1.5rem;
+}
+.cert-info h4 {
+    color: var(--cyber-gold);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+.cert-info span {
+    color: #aaa;
+    font-size: 0.9rem;
+    font-family: 'Outfit';
+}
+
+/* Single Certificate Clean Crossfade */
+.cert-stack {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 380px;
+    margin: 1rem auto;
+    cursor: pointer;
+    background: transparent;
+}
+
+.cert-card {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--cyber-gold);
+    border-radius: 10px;
+    backdrop-filter: blur(15px);
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+/* Base Level-Screen hidden state overrides */
+.level-screen .cert-stack .cert-card {
+    transition-delay: 0s !important;
+}
+
+.level-screen.active .cert-card.active {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 15px rgba(245, 197, 24, 0.3);
+}
+
+/* The old card stays visible temporarily beneath the new one */
+.level-screen.active .cert-card.outgoing {
+    opacity: 1;
+    z-index: 1; 
+    pointer-events: none;
+}
+
+/* The new card starts off-screen (top-right), huge, and rotated */
+.level-screen.active .cert-card.incoming {
+    opacity: 0;
+    z-index: 3;
+    transform: translate(80%, -80%) rotate(15deg) scale(1.1);
+}
+
+/* The new card flies in and lands on top of the old one */
+.level-screen.active .cert-card.dealing {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Responsive */
+@media(max-width: 1024px) {
+    .hud-overlay { padding: 1.5rem; }
+    .glitch { font-size: 3.5rem; }
+    .hud-card { padding: 2rem; width: 90%; }
+}
+
+@media(max-width: 768px) {
+    .hud-overlay { padding: 1rem; }
+    .hud-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .hud-top-left { font-size: 1rem; }
+    .hud-top-right { font-size: 1rem; align-self: flex-end; }
+    .glitch { font-size: 2.5rem; }
+    .subtitle { font-size: 1rem; }
+    .hud-card { padding: 1.5rem; width: 95%; max-height: 70vh; overflow-y: auto; }
+    .cyber-grid { grid-template-columns: 1fr; }
+    .cyber-stats { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    
+    .project-list li { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 1rem; }
+    .p-tech { width: 100%; justify-content: flex-start; }
+    
+    .cert-stack { height: 400px; width: 100%; }
+    .cert-card { max-width: 100%; height: auto; }
+}
+
+@media(max-width: 480px) {
+    .glitch { font-size: 1.8rem; letter-spacing: 2px; }
+    .hud-logo { font-size: 1.2rem; }
+    .hud-bottom { flex-direction: column; gap: 1rem; }
+    .hud-btn { width: 100%; padding: 0.8rem; }
+    .cert-stack { height: 300px; }
+}

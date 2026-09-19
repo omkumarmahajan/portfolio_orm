@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMKUMAR // SYS_JOURNEY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=7">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Background Canvases -->
+    <div class="canvas-container">
+        <canvas id="animation-canvas"></canvas>
+        <canvas id="webgl-canvas"></canvas>
+    </div>
+    
+    <!-- Scanline Overlay Effect -->
+    <div class="scanlines"></div>
+
+    <!-- HUD Navigation -->
+    <div class="hud-overlay">
+        <header class="hud-top">
+            <div class="hud-logo">
+                <i class="fa-solid fa-microchip"></i> OMKUMAR MAHAJAN <span class="blink">_</span>
+            </div>
+            <div class="hud-level">SECTION // <span id="level-display">01/06</span></div>
+        </header>
+
+        <main class="levels-container">
+            <!-- LEVEL 1: HERO -->
+            <section class="level-screen active" id="level-0">
+                <div class="hud-card">
+                    <p class="cyber-label">&gt; WELCOME</p>
+                    <h1 class="glitch" data-text="OMKUMAR MAHAJAN">OMKUMAR MAHAJAN</h1>
+                    <h3 class="cyber-subtitle">FUTURE TECH INNOVATOR | MERN INTERN</h3>
+                    <p class="cyber-desc">Building modern, responsive, and robust digital systems. Press Next to navigate my portfolio.</p>
+                    <div class="cyber-actions">
+                        <a href="Profile.pdf" download class="cyber-btn">DOWNLOAD_DATA <i class="fa-solid fa-download"></i></a>
+                    </div>
+                    <div class="hud-socials">
+                        <a href="https://www.linkedin.com/in/omkumar-mahajan-83aa27372" target="_blank">[ LINKEDIN ]</a>
+                        <a href="mailto:rsogm092606@gmail.com">[ EMAIL ]</a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- LEVEL 2: ABOUT -->
+            <section class="level-screen" id="level-1">
+                <div class="hud-card right-align">
+                    <p class="cyber-label">&gt; ABOUT_ME</p>
+                    <h2 class="glitch" data-text="ABOUT ME">ABOUT ME</h2>
+                    <p class="cyber-desc">Executing B.Tech in Computer Engineering at Zeal College, Pune. Diploma completed with 89.12% yield. Passionate about logic, structure, and machine learning architectures.</p>
+                    <div class="cyber-stats">
+                        <div class="c-stat"><span>3+</span> YRS_DEV</div>
+                        <div class="c-stat"><span>10+</span> NODES_BUILT</div>
+                        <div class="c-stat"><span>89%</span> EFFICIENCY</div>
+                    </div>
+                    <a href="sport.html" class="cyber-btn" style="margin-top: 1.5rem;">VIEW SPORTS/HOBBIES <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </section>
+
+            <!-- LEVEL 3: SKILLS -->
+            <section class="level-screen" id="level-2">
+                <div class="hud-card full-width">
+                    <p class="cyber-label">&gt; SKILLS_OVERVIEW</p>
+                    <h2 class="glitch" data-text="MY SKILLS">MY SKILLS</h2>
+                    <div class="cyber-grid">
+                        <div class="cyber-grid-item">
+                            <i class="fa-brands fa-react"></i>
+                            <h4>MERN STACK</h4>
+                            <p>Full-stack web compilation</p>
+                        </div>
+                        <div class="cyber-grid-item">
+                            <i class="fa-solid fa-terminal"></i>
+                            <h4>JAVA / C++</h4>
+                            <p>Low-level logic processing</p>
+                        </div>
+                        <div class="cyber-grid-item">
+                            <i class="fa-solid fa-pen-nib"></i>
+                            <h4>UI/UX ENG</h4>
+                            <p>Figma & Canva wireframes</p>
+                        </div>
+                        <div class="cyber-grid-item">
+                            <i class="fa-solid fa-robot"></i>
+                            <h4>AI ART</h4>
+                            <p>Generative neural networks</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LEVEL 4: PROJECTS -->
+            <section class="level-screen" id="level-3">
+                <div class="hud-card">
+                    <p class="cyber-label">&gt; PORTFOLIO</p>
+                    <h2 class="glitch" data-text="FEATURED PROJECTS">FEATURED PROJECTS</h2>
+                    <div class="cyber-list">
+                        <div class="cyber-list-item">
+                            <div class="c-icon"><i class="fa-solid fa-eye"></i></div>
+                            <div style="flex: 1;">
+                                <h4 style="color: #ff0044; text-shadow: 0 0 5px #ff0044;">VISION IOT</h4>
+                                <span>STATUS: HARDWARE MESH</span>
+                            </div>
+                            <a href="vision.html" class="cyber-btn" style="padding: 5px 15px; font-size: 0.8rem; margin: 0;">CASE STUDY <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <div class="cyber-list-item">
+                            <div class="c-icon"><i class="fa-brands fa-node-js"></i></div>
+                            <div>
+                                <h4>MERN DASHBOARD</h4>
+                                <span>STATUS: ONLINE</span>
+                            </div>
+                        </div>
+                        <div class="cyber-list-item">
+                            <div class="c-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                            <div>
+                                <h4>E-COM PLATFORM</h4>
+                                <span>STATUS: OPTIMIZED</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LEVEL 5: ACHIEVEMENTS / CERTIFICATES -->
+            <section class="level-screen" id="level-4">
+                <div class="hud-card full-width">
+                    <p class="cyber-label">&gt; CERTIFICATIONS</p>
+                    <h2 class="glitch" data-text="MY ACHIEVEMENTS">MY ACHIEVEMENTS</h2>
+                    <div class="cert-stack" id="cert-stack">
+                        <!-- Certificate 1: Deloitte -->
+                        <div class="cert-card active" data-index="0">
+                            <div class="cert-image" style="height: 250px; position: relative; overflow: hidden; pointer-events: none; background: #fff;">
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('deloitte.png'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Deloitte Certification</h4>
+                                <span>Professional Credential</span>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 2: Internship -->
+                        <div class="cert-card" data-index="1">
+                            <div class="cert-image" style="height: 250px; position: relative; overflow: hidden; pointer-events: none; background: #fff;">
+                                <div style="position: absolute; top: -20%; left: -20%; width: 140%; height: 140%; background-image: url('Internship certificate.jpeg'); background-size: contain; background-position: center; background-repeat: no-repeat; transform: rotate(-90deg);"></div>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Internship Certificate</h4>
+                                <span>Practical Experience</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <button class="cyber-btn" onclick="cycleCertificates()"><i class="fa-solid fa-arrows-rotate"></i> VIEW NEXT CERTIFICATE</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LEVEL 6: CONTACT -->
+            <section class="level-screen" id="level-5">
+                <div class="hud-card center-align">
+                    <p class="cyber-label">&gt; LET'S_CONNECT</p>
+                    <h2 class="glitch" data-text="CONTACT ME">CONTACT ME</h2>
+                    <p class="cyber-desc">Ready to integrate into new systems and build the future together.</p>
+                    <br>
+                    <a href="mailto:rsogm092606@gmail.com" class="cyber-btn large">TRANSMIT MESSAGE</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="hud-bottom">
+            <button class="hud-btn" id="btn-prev"><i class="fa-solid fa-backward-step"></i> PREV</button>
+            <div class="hud-status" id="hud-status">WAITING FOR COMMAND...</div>
+            <button class="hud-btn" id="btn-next">NEXT <i class="fa-solid fa-forward-step"></i></button>
+        </footer>
+    </div>
+
+    <script type="module" src="script.js?v=7"></script>
+</body>
+</html>

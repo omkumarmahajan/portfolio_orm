@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABLE TENNIS HOBBY LOG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="vision.css?v=10">
+</head>
+<body>
+    <!-- Fixed background canvas for the video frames -->
+    <canvas id="vision-canvas"></canvas>
+    
+    <!-- Scanlines effect -->
+    <div class="scanlines"></div>
+
+    <!-- Particle Background -->
+    <div id="particles-container"></div>
+    
+    <!-- Neon Cursor Trail -->
+    <div id="cursor-trail-container"></div>
+
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> SYSTEM REBOOT</a>
+        <div class="nav-title">SPORTS_SYS_LOG</div>
+    </nav>
+
+    <!-- Scrollable content overlaid on top -->
+    <main class="content-scroll">
+        <!-- Spacer to allow scrolling through first frames before text appears -->
+        <section class="spacer hero-spacer">
+            <p class="cyber-label">&gt; PERSONAL_HOBBIES</p>
+            <h1 class="glitch" data-text="TABLE TENNIS">TABLE TENNIS</h1>
+            <p class="subtitle" style="color: var(--gold); text-shadow: 0 0 10px rgba(245,197,24,0.5);">3-Time State Runner-Up <br><span style="font-size: 1rem; color: #fff;">Inter-Diploma Institutes</span></p>
+            <div class="scroll-indicator">
+                SCROLL TO DECRYPT <br>
+                <i class="fa-solid fa-angles-down blink" style="margin-top: 10px;"></i>
+            </div>
+        </section>
+
+        <!-- Component 1: The Achievement (Alert Style) -->
+        <section class="data-block right perspective-container">
+            <div class="alert-card card-3d hidden">
+                <div class="alert-header">
+                    <i class="fa-solid fa-trophy" style="color: var(--gold); text-shadow: 0 0 10px var(--gold);"></i>
+                    <h2 style="color: var(--gold);">ACHIEVEMENT UNLOCKED</h2>
+                </div>
+                <div class="alert-content">
+                    <div class="threat-item">
+                        <span class="threat-icon"><i class="fa-solid fa-medal"></i></span>
+                        <div class="threat-text">
+                            <strong>STATE RUNNER-UP</strong>
+                            <span>Achieved 3 consecutive times in highly competitive Inter-Diploma Institute tournaments.</span>
+                        </div>
+                    </div>
+                    <div class="threat-item">
+                        <span class="threat-icon"><i class="fa-solid fa-bolt"></i></span>
+                        <div class="threat-text">
+                            <strong>ELITE REFLEXES</strong>
+                            <span>Maintained peak physical agility and fast-twitch muscle response throughout all matches.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component 3: Skills Grid -->
+        <section class="data-block center perspective-container">
+            <div class="glass-panel card-3d hidden">
+                <div class="panel-header">
+                    <h2>PLAYER ATTRIBUTES</h2>
+                    <div class="status-badge" style="color: var(--gold); border-color: var(--gold); background: rgba(245,197,24,0.1);">PEAK FORM</div>
+                </div>
+                
+                <div class="req-grid">
+                    <div class="req-card hidden-stagger card-3d-child">
+                        <div class="req-icon"><i class="fa-solid fa-fire"></i></div>
+                        <h4 class="counter-label" data-target="95">FOREHAND SMASH <span class="counter-val">0%</span></h4>
+                        <div class="progress-bar"><div class="fill" data-width="95" style="width: 0%;"></div></div>
+                        <span>Offensive Strike</span>
+                    </div>
+                    <div class="req-card hidden-stagger card-3d-child" style="transition-delay: 0.1s;">
+                        <div class="req-icon"><i class="fa-solid fa-rotate-left"></i></div>
+                        <h4 class="counter-label" data-target="90">BACKHAND LOOP <span class="counter-val">0%</span></h4>
+                        <div class="progress-bar"><div class="fill" data-width="90" style="width: 0%;"></div></div>
+                        <span>Topspin Control</span>
+                    </div>
+                    <div class="req-card hidden-stagger card-3d-child" style="transition-delay: 0.2s;">
+                        <div class="req-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                        <h4 class="counter-label" data-target="100">REACTION SPEED <span class="counter-val">0%</span></h4>
+                        <div class="progress-bar"><div class="fill" data-width="100" style="width: 0%;"></div></div>
+                        <span>Sub-second Returns</span>
+                    </div>
+                    <div class="req-card hidden-stagger card-3d-child" style="transition-delay: 0.3s;">
+                        <div class="req-icon"><i class="fa-solid fa-crosshairs"></i></div>
+                        <h4 class="counter-label" data-target="85">SERVE ACCURACY <span class="counter-val">0%</span></h4>
+                        <div class="progress-bar"><div class="fill" data-width="85" style="width: 0%;"></div></div>
+                        <span>Pinpoint Placement</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="spacer footer-spacer hidden">
+            <h2 class="glitch" data-text="END OF LOG" style="color: #fff; font-size: 3rem; font-weight: 900; margin-bottom: 2rem;">END OF LOG</h2>
+            <a href="index.html" class="cyber-btn">RETURN TO SYSTEM</a>
+        </section>
+    </main>
+
+    <script src="sport.js?v=3"></script>
+</body>
+</html>
