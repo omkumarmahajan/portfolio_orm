@@ -66,12 +66,18 @@ function drawImageProp(ctx, img, x, y, w, h, offsetX, offsetY) {
 }
 
 
+// Optimization variables for smooth scrolling
+let currentFrameIndex = -1;
+let isTicking = false;
+
 // Scroll interaction for Video Frames
 window.addEventListener('scroll', () => {
-    // Calculate scroll progress robustly for mobile
     const html = document.documentElement;
-    const scrollTop = html.scrollTop || document.body.scrollTop || 0;
-    const maxScrollTop = html.scrollHeight - html.clientHeight;
+    // Use window.scrollY as it is most reliable on mobile
+    const scrollTop = window.scrollY || html.scrollTop || 0;
+    
+    // maxScrollTop based on window.innerHeight (standard viewport size)
+    const maxScrollTop = html.scrollHeight - window.innerHeight;
     
     // Clamp fraction between 0 and 1 to prevent rubber-band scrolling bugs
     const scrollFraction = maxScrollTop > 0 ? Math.max(0, Math.min(1, scrollTop / maxScrollTop)) : 0;
@@ -82,29 +88,43 @@ window.addEventListener('scroll', () => {
         Math.floor(scrollFraction * frameCount)
     );
 
-    // Request animation frame for smooth drawing
-    requestAnimationFrame(() => {
-        if (images[frameIndex] && images[frameIndex].complete && canvas.width > 0) {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            drawImageProp(context, images[frameIndex], 0, 0, canvas.width, canvas.height);
+    // Only draw if frame changed
+    if (frameIndex !== currentFrameIndex) {
+        currentFrameIndex = frameIndex;
+        
+        // Debounce with requestAnimationFrame
+        if (!isTicking) {
+            requestAnimationFrame(() => {
+                if (images[currentFrameIndex] && images[currentFrameIndex].complete && canvas.width > 0) {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    drawImageProp(context, images[currentFrameIndex], 0, 0, canvas.width, canvas.height);
+                }
+                isTicking = false;
+            });
+            isTicking = true;
         }
-    });
+    }
 });
+
+let lastWidth = window.innerWidth;
+let lastHeight = window.innerHeight;
 
 // Handle resize
 window.addEventListener('resize', () => {
+    // Ignore small height changes on mobile (e.g. address bar hiding/showing) to prevent canvas flickering
+    if (window.innerWidth === lastWidth && Math.abs(window.innerHeight - lastHeight) < 150) {
+        return;
+    }
+    
+    lastWidth = window.innerWidth;
+    lastHeight = window.innerHeight;
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    const html = document.documentElement;
-    const scrollTop = html.scrollTop || document.body.scrollTop || 0;
-    const maxScrollTop = html.scrollHeight - html.clientHeight;
-    const scrollFraction = maxScrollTop > 0 ? Math.max(0, Math.min(1, scrollTop / maxScrollTop)) : 0;
-    const frameIndex = Math.min(frameCount - 1, Math.floor(scrollFraction * frameCount));
-    
-    if (images[frameIndex] && images[frameIndex].complete) {
+    if (images[currentFrameIndex] && images[currentFrameIndex].complete) {
         context.clearRect(0, 0, canvas.width, canvas.height);
-        drawImageProp(context, images[frameIndex], 0, 0, canvas.width, canvas.height);
+        drawImageProp(context, images[currentFrameIndex], 0, 0, canvas.width, canvas.height);
     }
 });
 
