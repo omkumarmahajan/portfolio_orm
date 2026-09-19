@@ -68,10 +68,13 @@ function drawImageProp(ctx, img, x, y, w, h, offsetX, offsetY) {
 
 // Scroll interaction for Video Frames
 window.addEventListener('scroll', () => {
-    // Calculate scroll progress
-    const scrollTop = document.documentElement.scrollTop;
-    const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / maxScrollTop;
+    // Calculate scroll progress robustly for mobile
+    const html = document.documentElement;
+    const scrollTop = html.scrollTop || document.body.scrollTop || 0;
+    const maxScrollTop = html.scrollHeight - html.clientHeight;
+    
+    // Clamp fraction between 0 and 1 to prevent rubber-band scrolling bugs
+    const scrollFraction = maxScrollTop > 0 ? Math.max(0, Math.min(1, scrollTop / maxScrollTop)) : 0;
 
     // Determine the corresponding frame
     const frameIndex = Math.min(
@@ -93,9 +96,10 @@ window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    const scrollTop = document.documentElement.scrollTop;
-    const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / maxScrollTop;
+    const html = document.documentElement;
+    const scrollTop = html.scrollTop || document.body.scrollTop || 0;
+    const maxScrollTop = html.scrollHeight - html.clientHeight;
+    const scrollFraction = maxScrollTop > 0 ? Math.max(0, Math.min(1, scrollTop / maxScrollTop)) : 0;
     const frameIndex = Math.min(frameCount - 1, Math.floor(scrollFraction * frameCount));
     
     if (images[frameIndex] && images[frameIndex].complete) {
