@@ -28,7 +28,7 @@ body::-webkit-scrollbar { display: none; }
 #vision-canvas {
     position: fixed;
     top: 0; left: 0;
-    width: 100vw; height: 100vh;
+    width: 100vw; height: 100dvh;
     object-fit: cover;
     z-index: 0;
     opacity: 1.0;
@@ -63,7 +63,7 @@ body::-webkit-scrollbar { display: none; }
 
 /* Layout */
 .content-scroll { position: relative; z-index: 10; width: 100%; padding-bottom: 20vh; }
-.spacer { width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.spacer { width: 100%; height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
 .data-block {
     width: 100%; min-height: 80vh;
     display: flex; flex-direction: column; justify-content: center;
@@ -280,7 +280,7 @@ body::-webkit-scrollbar { display: none; }
 #particles-container {
     position: fixed;
     top: 0; left: 0;
-    width: 100vw; height: 100vh;
+    width: 100vw; height: 100dvh;
     pointer-events: none;
     z-index: 1;
 }
@@ -293,7 +293,7 @@ body::-webkit-scrollbar { display: none; }
     animation: floatUp linear infinite;
 }
 @keyframes floatUp {
-    0% { transform: translateY(100vh) scale(1); opacity: 0; }
+    0% { transform: translateY(100dvh) scale(1); opacity: 0; }
     10% { opacity: 0.8; }
     90% { opacity: 0.5; }
     100% { transform: translateY(-10vh) scale(0.5); opacity: 0; }
@@ -303,7 +303,7 @@ body::-webkit-scrollbar { display: none; }
 #cursor-trail-container {
     position: fixed;
     top: 0; left: 0;
-    width: 100vw; height: 100vh;
+    width: 100vw; height: 100dvh;
     pointer-events: none;
     z-index: 9999;
 }
