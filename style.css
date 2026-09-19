@@ -87,7 +87,6 @@ canvas {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--cyber-gold);
     padding-bottom: 1rem;
     pointer-events: auto;
 }
@@ -262,9 +261,31 @@ canvas {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid var(--cyber-gold);
     padding-top: 1.5rem;
     pointer-events: auto;
+}
+.next-btn-wrapper {
+    position: relative;
+    display: flex;
+}
+.click-indicator {
+    position: absolute;
+    top: -35px;
+    right: 10px;
+    color: var(--cyber-gold);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: float-point 1.5s infinite ease-in-out;
+    text-shadow: 0 0 10px rgba(245, 197, 24, 0.8);
+    pointer-events: none;
+}
+@keyframes float-point {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 .hud-status { color: var(--text-dim); font-size: 0.9rem; }
 

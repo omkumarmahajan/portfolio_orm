@@ -181,7 +181,13 @@
         <footer class="hud-bottom">
             <button class="hud-btn" id="btn-prev"><i class="fa-solid fa-backward-step"></i> PREV</button>
             <div class="hud-status" id="hud-status">WAITING FOR COMMAND...</div>
-            <button class="hud-btn" id="btn-next">NEXT <i class="fa-solid fa-forward-step"></i></button>
+            <div class="next-btn-wrapper">
+                <div class="click-indicator" id="click-indicator">
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <span>CLICK NEXT</span>
+                </div>
+                <button class="hud-btn" id="btn-next">NEXT <i class="fa-solid fa-forward-step"></i></button>
+            </div>
         </footer>
     </div>
 

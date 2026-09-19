@@ -27,6 +27,7 @@ const levelDisplay = document.getElementById('level-display');
 const statusDisplay = document.getElementById('hud-status');
 const levelScreens = document.querySelectorAll('.level-screen');
 const animationCanvas = document.getElementById("animation-canvas"); // Also used in 2D logic below
+const clickIndicator = document.getElementById("click-indicator");
 
 const levelNames = ["HOME", "ABOUT ME", "MY SKILLS", "PROJECTS", "ACHIEVEMENTS", "CONTACT"];
 const bgPositions = ["pos-right", "pos-left", "pos-center", "pos-right", "pos-left", "pos-center"];
@@ -61,9 +62,11 @@ const updateHUD = () => {
     if (currentLevel < TOTAL_LEVELS - 1) {
         btnNext.innerHTML = `NEXT: ${levelNames[currentLevel + 1]} <i class="fa-solid fa-forward-step"></i>`;
         btnNext.disabled = false;
+        clickIndicator.style.display = 'flex';
     } else {
         btnNext.innerHTML = `NEXT <i class="fa-solid fa-forward-step"></i>`;
         btnNext.disabled = true;
+        clickIndicator.style.display = 'none';
     }
 };
 
