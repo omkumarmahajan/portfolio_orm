@@ -59,7 +59,7 @@ body::-webkit-scrollbar { display: none; }
     transition: 0.3s; text-shadow: 0 0 5px rgba(245, 197, 24, 0.5);
 }
 .back-btn:hover { color: #fff; text-shadow: 0 0 10px #fff; }
-.nav-title { color: #fff; opacity: 0.5; letter-spacing: 5px; }
+.nav-title { color: var(--gold); opacity: 1; letter-spacing: 5px; font-weight: bold; text-shadow: 0 0 10px rgba(245, 197, 24, 0.5); }
 
 /* Layout */
 .content-scroll { position: relative; z-index: 10; width: 100%; padding-bottom: 20vh; }
@@ -219,30 +219,49 @@ body::-webkit-scrollbar { display: none; }
 }
 
 @media (max-width: 768px) {
-    .top-nav { padding: 1rem; flex-direction: column; gap: 0.5rem; }
-    .glitch { font-size: 2.5rem; }
+    .top-nav { padding: 0.5rem 1rem; flex-direction: row; justify-content: space-between; gap: 0.5rem; font-size: 0.8rem; }
+    .back-btn { font-size: 0.8rem; }
+    .glitch { font-size: 2rem; }
+    .subtitle { font-size: 0.9rem; }
     
-    .data-block { padding: 2rem 1rem; }
-    .glass-panel, .alert-card, .architecture-card, .future-card, .team-card { width: 95%; padding: 1.5rem; }
+    .data-block { padding: 1rem 0.5rem; min-height: 100dvh; }
+    .glass-panel, .alert-card, .architecture-card, .future-card, .team-card { width: 98%; padding: 1rem; }
     
-    .node-container { flex-direction: column; gap: 2rem; align-items: center; }
-    .node { width: 100%; max-width: 300px; }
-    .data-link { height: 50px; width: 2px; margin: 1rem auto; }
+    .alert-header { margin-bottom: 1rem; padding-bottom: 0.5rem; gap: 0.5rem; }
+    .alert-header i { font-size: 1.5rem; }
+    .alert-header h2 { font-size: 1.2rem; }
+    .threat-item { gap: 0.5rem; margin-bottom: 0.5rem; }
+    .threat-text strong { font-size: 1rem; margin-bottom: 0.2rem; }
+    .threat-text span { font-size: 0.85rem; line-height: 1.2; }
+
+    .node-container { flex-direction: column; gap: 1rem; align-items: center; }
+    .node { width: 100%; max-width: 300px; padding: 1rem; }
+    .node-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .node h3 { font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .data-link { height: 30px; width: 2px; margin: 0.5rem auto; }
     .link-line { width: 2px; height: 100%; top: 0; left: 50%; }
     .link-packet { top: 0; left: calc(50% - 4px); animation: transmit-vertical 2s linear infinite; }
     
     @keyframes transmit-vertical { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: calc(100% - 10px); opacity: 0; } }
     
-    .team-content { flex-direction: column; gap: 2rem; }
-    .team-image-wrapper { width: 100%; max-width: 300px; margin: 0 auto; }
+    .team-content { flex-direction: column; gap: 1rem; margin-top: 1rem; }
+    .team-image-wrapper { width: 100%; max-width: 200px; margin: 0 auto; }
+    .team-names h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .team-names li { font-size: 0.85rem; margin-bottom: 0.3rem; }
     
-    .req-grid { grid-template-columns: 1fr; }
+    .req-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+    .req-card { padding: 0.8rem; }
+    .req-icon { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .req-card h4 { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    
+    .panel-header { flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .panel-header h2 { font-size: 1.3rem; }
 }
 
 @media (max-width: 480px) {
-    .glitch { font-size: 1.8rem; }
-    .subtitle { font-size: 1rem; }
-    .cyber-btn { width: 100%; }
+    .glitch { font-size: 1.5rem; }
+    .subtitle { font-size: 0.8rem; }
+    .cyber-btn { width: 100%; font-size: 0.9rem; padding: 0.8rem; }
     
     /* Disable 3D tilt visually on mobile by removing transitions */
     .card-3d { transform: none !important; transition: none !important; }
