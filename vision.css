@@ -259,7 +259,7 @@ body::-webkit-scrollbar { display: none; }
 }
 
 @media (max-width: 480px) {
-    .glitch { font-size: 1.5rem; }
+    .glitch { font-size: 1.8rem; color: var(--gold); text-shadow: 0 0 10px rgba(245, 197, 24, 0.5); font-weight: bold; }
     .subtitle { font-size: 0.8rem; }
     .cyber-btn { width: 100%; font-size: 0.9rem; padding: 0.8rem; }
     

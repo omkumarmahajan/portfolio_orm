@@ -97,7 +97,8 @@ window.addEventListener('scroll', () => {
             requestAnimationFrame(() => {
                 if (images[currentFrameIndex] && images[currentFrameIndex].complete && canvas.width > 0) {
                     context.clearRect(0, 0, canvas.width, canvas.height);
-                    drawImageProp(context, images[currentFrameIndex], 0, 0, canvas.width, canvas.height);
+                    const offsetX = window.innerWidth <= 768 ? 0.3 : 0.5;
+                    drawImageProp(context, images[currentFrameIndex], 0, 0, canvas.width, canvas.height, offsetX, 0.5);
                 }
                 isTicking = false;
             });
@@ -124,7 +125,8 @@ window.addEventListener('resize', () => {
     
     if (images[currentFrameIndex] && images[currentFrameIndex].complete) {
         context.clearRect(0, 0, canvas.width, canvas.height);
-        drawImageProp(context, images[currentFrameIndex], 0, 0, canvas.width, canvas.height);
+        const offsetX = window.innerWidth <= 768 ? 0.3 : 0.5;
+        drawImageProp(context, images[currentFrameIndex], 0, 0, canvas.width, canvas.height, offsetX, 0.5);
     }
 });
 
