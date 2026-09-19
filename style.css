@@ -513,7 +513,8 @@ canvas {
     .hud-logo { font-size: 1.2rem; }
     .hud-bottom { flex-direction: row; justify-content: space-between; gap: 0.5rem; }
     .hud-status { display: none; }
-    .hud-btn { width: 48%; padding: 0.8rem 0; justify-content: center; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; }
+    .hud-btn, .next-btn-wrapper { width: 48%; padding: 0.8rem 0; justify-content: center; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; }
+    .next-btn-wrapper .hud-btn { width: 100%; margin: 0; }
     .cert-stack { height: 200px; margin-bottom: 0.5rem; }
     .cert-card { max-height: 200px; }
     .hud-overlay { padding: 1rem 0.5rem; }
