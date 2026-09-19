@@ -268,24 +268,20 @@ canvas {
     position: relative;
     display: flex;
 }
-.click-indicator {
+.hand-indicator {
     position: absolute;
-    top: -35px;
-    right: 10px;
+    top: -50px;
+    right: 15px;
     color: var(--cyber-gold);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: float-point 1.5s infinite ease-in-out;
-    text-shadow: 0 0 10px rgba(245, 197, 24, 0.8);
+    font-size: 2.5rem;
+    animation: float-point-3d 1.5s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    filter: drop-shadow(0 0 10px rgba(245, 197, 24, 0.8));
     pointer-events: none;
+    z-index: 100;
 }
-@keyframes float-point {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+@keyframes float-point-3d {
+    0%, 100% { transform: translateY(0) rotateX(0deg) scale(1); }
+    50% { transform: translateY(-15px) rotateX(20deg) scale(1.1); filter: drop-shadow(0 0 15px rgba(245, 197, 24, 1)); }
 }
 .hud-status { color: var(--text-dim); font-size: 0.9rem; }
 
