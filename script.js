@@ -51,8 +51,9 @@ const updateHUD = () => {
     animationCanvas.className = bgPositions[currentLevel];
 
     // Update Buttons with dynamic text
+    const isMobile = window.innerWidth <= 480;
     if (currentLevel > 0) {
-        btnPrev.innerHTML = `<i class="fa-solid fa-backward-step"></i> PREV: ${levelNames[currentLevel - 1]}`;
+        btnPrev.innerHTML = `<i class="fa-solid fa-backward-step"></i> PREV${isMobile ? '' : ': ' + levelNames[currentLevel - 1]}`;
         btnPrev.disabled = false;
     } else {
         btnPrev.innerHTML = `<i class="fa-solid fa-backward-step"></i> PREV`;
@@ -60,7 +61,7 @@ const updateHUD = () => {
     }
 
     if (currentLevel < TOTAL_LEVELS - 1) {
-        btnNext.innerHTML = `NEXT: ${levelNames[currentLevel + 1]} <i class="fa-solid fa-forward-step"></i>`;
+        btnNext.innerHTML = `NEXT${isMobile ? '' : ': ' + levelNames[currentLevel + 1]} <i class="fa-solid fa-forward-step"></i>`;
         btnNext.disabled = false;
         clickIndicator.style.display = 'flex';
     } else {
@@ -219,6 +220,7 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    updateHUD();
 });
 
 
