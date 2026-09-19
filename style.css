@@ -306,7 +306,7 @@ canvas {
     clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
     white-space: nowrap;
 }
-.hud-btn:not(:disabled) {
+.hud-btn:not(:disabled), .cert-btn {
     animation: btn-pulse 2s infinite alternate;
 }
 @keyframes btn-pulse {
